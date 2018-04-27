@@ -13,59 +13,69 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var enterText: UITextField!
     
-    var todoList = [[String : Bool]]()
+    var todoItems: [TodoItem] = []
+    var jsonItems : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        if let storedData = UserDefaults.standard.array(forKey: "todoList") as? [[String : Bool]] {
-            todoList = storedData
+
+        if let storedJSON = UserDefaults.standard.object(forKey: "todoItemsList") as? String {
+            let decoder = JSONDecoder()
+            if let data = storedJSON.data(using: .ascii) {
+                todoItems = try! decoder.decode([TodoItem].self, from: data)
+            }
         }
     }
    
     fileprivate func saveData() {
-        UserDefaults.standard.set(todoList, forKey: "todoList")
+        let encoder = JSONEncoder()
+        let encoded = try! encoder.encode(todoItems)
+        jsonItems = String(data: encoded, encoding: .ascii)!
+        UserDefaults.standard.set(jsonItems, forKey: "todoItemsList")
     }
     
     @IBAction func addBtnPressed(_ sender: Any) {
         if enterText.text != "" {
-            todoList.append([enterText.text! : false])
+            todoItems.append(TodoItem(todoText: enterText.text!, isComplete: false))
         }
         tableView.reloadData()
         enterText.text = ""
         saveData()
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoList.count
+        return todoItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        cell?.textLabel?.text = (todoList[indexPath.row].first!.key)
-        cell?.accessoryType = (todoList[indexPath.row].first!.value) ? .checkmark : .none
+        cell?.textLabel?.text = todoItems[indexPath.row].todoText
+        cell?.accessoryType = todoItems[indexPath.row].isComplete ? .checkmark : .none
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = cell?.accessoryType == .checkmark ? .none : .checkmark
-        todoList[indexPath.row].updateValue(cell?.accessoryType == .checkmark, forKey: todoList[indexPath.row].first!.key)
+        todoItems[indexPath.row].isComplete = !todoItems[indexPath.row].isComplete
         tableView.deselectRow(at: indexPath, animated: true)
        saveData()
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            todoList.remove(at: indexPath.row)
+            todoItems.remove(at: indexPath.row)
             tableView.reloadData()
             saveData()
         }
     }
-    
+}
 
+struct TodoItem: Codable {
+    var todoText: String
+    var isComplete: Bool = false
 }
 
 
