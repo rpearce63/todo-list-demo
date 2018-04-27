@@ -20,13 +20,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        enterText.delegate = self
 
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
         if let storedJSON = UserDefaults.standard.object(forKey: "todoItemsList") as? String {
             let decoder = JSONDecoder()
             if let data = storedJSON.data(using: .ascii) {
                 todoItems = try! decoder.decode([TodoItem].self, from: data)
             }
         }
+    }
+    
+    @objc func handleTap(){
+        enterText.resignFirstResponder()
     }
    
     fileprivate func saveData() {
@@ -36,13 +44,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         UserDefaults.standard.set(jsonItems, forKey: "todoItemsList")
     }
     
-    @IBAction func addBtnPressed(_ sender: Any) {
+    func addNewItem() {
         if enterText.text != "" {
             todoItems.append(TodoItem(todoText: enterText.text!, isComplete: false))
         }
         tableView.reloadData()
         enterText.text = ""
         saveData()
+    }
+    
+    @IBAction func addBtnPressed(_ sender: Any) {
+        enterText.becomeFirstResponder()
+        addNewItem()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,6 +89,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 struct TodoItem: Codable {
     var todoText: String
     var isComplete: Bool = false
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.addNewItem()
+        return true
+    }
 }
 
 
