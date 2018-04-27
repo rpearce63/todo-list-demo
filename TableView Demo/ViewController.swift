@@ -24,7 +24,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
    
-   
+    fileprivate func saveData() {
+        UserDefaults.standard.set(todoList, forKey: "todoList")
+    }
     
     @IBAction func addBtnPressed(_ sender: Any) {
         if enterText.text != "" {
@@ -32,12 +34,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         tableView.reloadData()
         enterText.text = ""
-        UserDefaults.standard.set(todoList, forKey: "todoList")
+        saveData()
     }
-    
-//    func getData() -> [String] {
-//        return todoList
-//    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,19 +44,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        cell?.textLabel?.text = (todoList[indexPath.row].keys.first)
-        cell?.accessoryType = (todoList[indexPath.row].values.first!) ? .checkmark : .none
+        cell?.textLabel?.text = (todoList[indexPath.row].first!.key)
+        cell?.accessoryType = (todoList[indexPath.row].first!.value) ? .checkmark : .none
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = cell?.accessoryType == .checkmark ? .none : .checkmark
-        todoList[indexPath.row].updateValue(cell?.accessoryType == .checkmark, forKey: todoList[indexPath.row].keys.first!)
+        todoList[indexPath.row].updateValue(cell?.accessoryType == .checkmark, forKey: todoList[indexPath.row].first!.key)
         tableView.deselectRow(at: indexPath, animated: true)
-        UserDefaults.standard.set(todoList, forKey: "todoList")
+       saveData()
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            todoList.remove(at: indexPath.row)
+            tableView.reloadData()
+            saveData()
+        }
+    }
     
 
 }
