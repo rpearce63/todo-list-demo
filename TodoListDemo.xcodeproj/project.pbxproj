@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4DB43C31208A829F004EF3EA /* TableView Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TableView Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DB43C31208A829F004EF3EA /* TodoListDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoListDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DB43C34208A829F004EF3EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DB43C36208A829F004EF3EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4DB43C39208A829F004EF3EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -38,7 +38,7 @@
 		4DB43C28208A829F004EF3EA = {
 			isa = PBXGroup;
 			children = (
-				4DB43C33208A829F004EF3EA /* TableView Demo */,
+				4DB43C33208A829F004EF3EA /* TodoListDemo */,
 				4DB43C32208A829F004EF3EA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,12 +46,12 @@
 		4DB43C32208A829F004EF3EA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4DB43C31208A829F004EF3EA /* TableView Demo.app */,
+				4DB43C31208A829F004EF3EA /* TodoListDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4DB43C33208A829F004EF3EA /* TableView Demo */ = {
+		4DB43C33208A829F004EF3EA /* TodoListDemo */ = {
 			isa = PBXGroup;
 			children = (
 				4DB43C34208A829F004EF3EA /* AppDelegate.swift */,
@@ -61,15 +61,15 @@
 				4DB43C3D208A82A1004EF3EA /* LaunchScreen.storyboard */,
 				4DB43C40208A82A1004EF3EA /* Info.plist */,
 			);
-			path = "TableView Demo";
+			path = TodoListDemo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4DB43C30208A829F004EF3EA /* TableView Demo */ = {
+		4DB43C30208A829F004EF3EA /* TodoListDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4DB43C43208A82A1004EF3EA /* Build configuration list for PBXNativeTarget "TableView Demo" */;
+			buildConfigurationList = 4DB43C43208A82A1004EF3EA /* Build configuration list for PBXNativeTarget "TodoListDemo" */;
 			buildPhases = (
 				4DB43C2D208A829F004EF3EA /* Sources */,
 				4DB43C2E208A829F004EF3EA /* Frameworks */,
@@ -79,9 +79,9 @@
 			);
 			dependencies = (
 			);
-			name = "TableView Demo";
+			name = TodoListDemo;
 			productName = "TableView Demo";
-			productReference = 4DB43C31208A829F004EF3EA /* TableView Demo.app */;
+			productReference = 4DB43C31208A829F004EF3EA /* TodoListDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -99,7 +99,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4DB43C2C208A829F004EF3EA /* Build configuration list for PBXProject "TableView Demo" */;
+			buildConfigurationList = 4DB43C2C208A829F004EF3EA /* Build configuration list for PBXProject "TodoListDemo" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -112,7 +112,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4DB43C30208A829F004EF3EA /* TableView Demo */,
+				4DB43C30208A829F004EF3EA /* TodoListDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -286,12 +286,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = "TableView Demo/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/TodoListDemo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pearce.TableView-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pearce.rick.todo-list-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -308,12 +308,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = "TableView Demo/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/TodoListDemo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pearce.TableView-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pearce.rick.todo-list-demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -323,7 +323,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4DB43C2C208A829F004EF3EA /* Build configuration list for PBXProject "TableView Demo" */ = {
+		4DB43C2C208A829F004EF3EA /* Build configuration list for PBXProject "TodoListDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4DB43C41208A82A1004EF3EA /* Debug */,
@@ -332,7 +332,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4DB43C43208A82A1004EF3EA /* Build configuration list for PBXNativeTarget "TableView Demo" */ = {
+		4DB43C43208A82A1004EF3EA /* Build configuration list for PBXNativeTarget "TodoListDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4DB43C44208A82A1004EF3EA /* Debug */,
